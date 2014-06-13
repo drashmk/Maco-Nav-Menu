@@ -36,7 +36,6 @@
                     <tr>
                         <td class="label"><?php echo $this->__('Link type'); ?></td>
                         <td class="value"><select id="type" name="type">
-                            <option value="1"><?php echo $this->__('Catalog'); ?></option>
                             <option value="2"><?php echo $this->__('CMS page'); ?></option>
                             <option value="3"><?php echo $this->__('External page'); ?></option>
                         </select></td>
@@ -48,14 +47,6 @@
                             </label>
                         </td>
                         <td class="value">
-                            <select id="catalog" name="value" class="validate-select">
-                                <option value=""/>
-                                <?php foreach ($this->getStoreCategories() as $cat): ?>
-                                    <?php if($cat->getName() && ($cat->getLevel() != 1)): ?>
-                                        <option value="<?php echo($cat->getId()); ?>"><?php echo $cat->getName(); ?></option>
-                                    <?php endif;?>
-                                <?php endforeach; ?>
-                            </select>
                             <select id="page" name="value" class="validate-select">
                                 <option value=""/>
                                 <?php foreach ($this->getCmsPages() as $page): ?>
@@ -92,7 +83,7 @@
         $('priority').value = 1;
         getTree();
         selectMode(1);
-        chooser(1);
+        chooser(2);
     });
     Event.observe($("type"), 'change', function () {
         var type = $("type").value;
@@ -104,21 +95,14 @@
     };
     function chooser(type) {
         $$("#values select,#values input").invoke('hide');
-        if (type == 1) {
-            $('catalog').show();
-            $('catalog').addClassName('validate-select');
-            $('address').removeClassName('required-entry');
-            $('page').removeClassName('validate-select');
-        }else if (type == 2) {
+         if (type == 2) {
             $('page').show();
             $('page').addClassName('validate-select');
             $('address').removeClassName('required-entry');
-            $('catalog').removeClassName('validate-select');
         }else if (type == 3) {
             $('address').show();
             $('address').addClassName('required-entry');
             $('page').removeClassName('validate-select');
-            $('catalog').removeClassName('validate-select');
         }
 
         $$('#values td.value').each(function(element) {

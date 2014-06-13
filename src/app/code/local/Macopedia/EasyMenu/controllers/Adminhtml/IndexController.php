@@ -9,13 +9,13 @@ class Macopedia_EasyMenu_Adminhtml_IndexController extends Mage_Adminhtml_Contro
         $this->_initAction();
 
         $store = Mage::getModel('core/store')->load($this->_helper()->getStoreId());
-        $rootCategoryId = $store->getRootCategoryId();
-        $categories = Mage::getModel('catalog/category')
-            ->getCollection()
-            ->addAttributeToFilter('path', array('like' => "1/{$rootCategoryId}/%"))
-            ->addFieldToFilter('is_active' ,array("in"=>array('1')))
-            ->addAttributeToSelect('name');
-        Mage::register('categories', $categories);
+//        $rootCategoryId = $store->getRootCategoryId();
+//        $categories = Mage::getModel('catalog/category')
+//            ->getCollection()
+//            ->addAttributeToFilter('path', array('like' => "1/{$rootCategoryId}/%"))
+//            ->addFieldToFilter('is_active' ,array("in"=>array('1')))
+//            ->addAttributeToSelect('name');
+//        Mage::register('categories', $categories);
 
         $cms = Mage::getModel('cms/page')->getCollection()
             ->addStoreFilter($this->_helper()->getStoreId())

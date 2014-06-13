@@ -20,9 +20,10 @@ class Macopedia_EasyMenu_Block_Tree extends Mage_Core_Block_Template
 
     private function getLink($type, $value)
     {
-        if ($type == 1)
-            $url = Mage::getModel("catalog/category")->load($value)->getUrl();
-        else if ($type == 2) {
+//        if ($type == 1)
+//            $url = Mage::getModel("catalog/category")->load($value)->getUrl();
+//        else
+        if ($type == 2) {
             $url = Mage::helper('cms/page')->getPageUrl($value);
         }
         else if($type ==3)
